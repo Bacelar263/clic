@@ -502,14 +502,14 @@ img {
     transform: translateY(-6px);
 }
 
-/* .home__blob-titulo {
+.home__blob-titulo {
     text-align: center;
     font-size: var(--tamanho-fonte-normal);
     margin-top: 15rem;
     letter-spacing: 2px;
     color: var(--cor-titulo);
     font-weight: var(--grossura-media);
-} */
+}
 
 @media (max-width: 650px) {
     .lamp {
