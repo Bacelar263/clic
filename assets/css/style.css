@@ -344,7 +344,7 @@ img {
 
 .home__blob {
     width: 250px;
-    height: 250px;
+    height: 320px;
     border: 6px solid transparent;
     background: var(--primeiro-gradiente) padding-box,
                 linear-gradient(90deg,
@@ -456,8 +456,8 @@ img {
     overflow: visible !important;
     height: 50vmin;
     position: absolute;
-    margin-top: -1rem;
-    margin-left: 5.5rem;
+    margin-top: 4.5rem;
+    margin-left: 10rem;
     z-index: var(--z-fixo);
   }
   
@@ -504,16 +504,16 @@ img {
 
 .home__blob-titulo {
     text-align: center;
-    font-size: var(--tamanho-fonte-grande);
-    margin-top: 11rem;
+    font-size: var(--tamanho-fonte-normal);
+    margin-top: 15rem;
     letter-spacing: 2px;
     color: var(--cor-titulo);
-    font-weight: var(--grossura-semi-negrito);
+    font-weight: var(--grossura-media);
 }
 
 @media (max-width: 650px) {
     .lamp {
-        zoom: 1;
+        zoom: .6;
     }
 }
 
@@ -567,6 +567,7 @@ img {
 
     .toggle-scene__dummy-cord {
         stroke-width: 6;
+        stroke: var(--cord);
     }
 }
 
