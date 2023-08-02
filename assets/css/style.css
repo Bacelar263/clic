@@ -344,7 +344,7 @@ img {
 
 .home__blob {
     width: 250px;
-    height: 320px;
+    height: 250px;
     border: 6px solid transparent;
     background: var(--primeiro-gradiente) padding-box,
                 linear-gradient(90deg,
@@ -456,8 +456,8 @@ img {
     overflow: visible !important;
     height: 50vmin;
     position: absolute;
-    /* margin-top: 4.5rem;
-    margin-left: 10rem; */
+    margin-top: -2.5rem;
+    margin-left: 10rem;
     z-index: var(--z-fixo);
   }
   
