@@ -456,8 +456,8 @@ img {
     overflow: visible !important;
     height: 50vmin;
     position: absolute;
-    margin-top: -2rem;
-    margin-left: 5rem;
+    margin-top: -1rem;
+    margin-left: 5.5rem;
     z-index: var(--z-fixo);
   }
   
