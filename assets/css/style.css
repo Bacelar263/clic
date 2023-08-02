@@ -504,9 +504,10 @@ img {
 
 .home__blob-titulo {
     text-align: center;
-    font-size: 3.5rem;
+    font-size: var(--tamanho-fonte-normal);
+    margin-top: 15rem;
     letter-spacing: 2px;
-    color: hsla(0, 0%, 100%, .3);
+    color: var(--cor-titulo);
     font-weight: var(--grossura-media);
 }
 
@@ -655,6 +656,12 @@ img {
         width: 530px;
         height: 670px;
         border: 10px solid transparent;
+    }
+
+    .home__blob-titulo {
+        font-size: var(--tamanho-fonte-grande);
+        margin-top: 28rem;
+        letter-spacing: 2px;
     }
 
     .home__shadow {
