@@ -457,7 +457,7 @@ img {
     height: 50vmin;
     position: absolute;
     margin-top: -2rem;
-    margin-left: 6rem;
+    margin-left: 5rem;
     z-index: var(--z-fixo);
   }
   
@@ -504,8 +504,8 @@ img {
 
 .home__blob-titulo {
     text-align: center;
-    font-size: var(--tamanho-fonte-normal);
-    margin-top: 8rem;
+    font-size: var(--tamanho-fonte-grande);
+    margin-top: 12rem;
     letter-spacing: 2px;
     color: var(--cor-titulo);
     font-weight: var(--grossura-media);
