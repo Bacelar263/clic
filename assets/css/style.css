@@ -505,10 +505,10 @@ img {
 .home__blob-titulo {
     text-align: center;
     font-size: var(--tamanho-fonte-grande);
-    margin-top: 12rem;
+    margin-top: 11rem;
     letter-spacing: 2px;
     color: var(--cor-titulo);
-    font-weight: var(--grossura-media);
+    font-weight: var(--grossura-semi-negrito);
 }
 
 @media (max-width: 650px) {
