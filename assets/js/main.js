@@ -35,118 +35,81 @@ const scrollHeader = () => {
 window.addEventListener('scroll', scrollHeader)
 
 /*=============== ANIMAÇÃO LÂMPADA ===============*/
-const {
-    gsap: { registerPlugin, set, to, timeline },
-    MorphSVGPlugin,
-    Draggable } =
-  window;
-  registerPlugin(MorphSVGPlugin);
-  
-  // Used to calculate distance of "tug"
-  let startX;
-  let startY;
-  
-  const AUDIO = {
-    CLICK: new Audio('https://assets.codepen.io/605876/click.mp3') };
-  
-  const STATE = {
-    ON: false };
+const interruptorCheckbox = document.getElementById('interruptor');
+const homeLuz = document.querySelector('.home__luz');
 
-    const TOGGLE_STATES = ['ligado', 'desligado']; // Estados possíveis para o toggle
-    let toggleIndex = 0; // Índice inicial do estado do toggle
-    let toggle = TOGGLE_STATES[toggleIndex]; // Valor inicial do toggle
+// Verifique se há um estado salvo no localStorage
+const estadoInterruptor = localStorage.getItem('interruptor');
+
+// Se o estado for 'ligado', marque o checkbox e exiba a .home__luz
+if (estadoInterruptor === 'ligado') {
+    interruptorCheckbox.checked = true;
+    homeLuz.style.opacity = '0.4';
+}
   
-  const CORD_DURATION = 0.1;
-  
-  const CORDS = document.querySelectorAll('.toggle-scene__cord');
-  const HIT = document.querySelector('.toggle-scene__hit-spot');
-  const DUMMY = document.querySelector('.toggle-scene__dummy-cord');
-  const DUMMY_CORD = document.querySelector('.toggle-scene__dummy-cord line');
-  const PROXY = document.createElement('div');
-  // set init position
-  const ENDX = DUMMY_CORD.getAttribute('x2');
-  const ENDY = DUMMY_CORD.getAttribute('y2');
-  const RESET = () => {
-    set(PROXY, {
-      x: ENDX,
-      y: ENDY });
-  
-  };
-  
-  RESET();
-  
-  const CORD_TL = timeline({
-    paused: true,
-    onStart: () => {
-      STATE.ON = !STATE.ON;
-      set(document.documentElement, { '--on': STATE.ON ? 1 : 0 });
-      set([DUMMY, HIT], { display: 'none' });
-      set(CORDS[0], { display: 'block' });
-      AUDIO.CLICK.play();
-    },
-    onComplete: () => {
-        toggleIndex = (toggleIndex + 1) % TOGGLE_STATES.length;
-        toggle = TOGGLE_STATES[toggleIndex];
-      
-        console.log('Estado do toggle:', toggle);
-      
-        const bulb = document.getElementById('bulb');
-      
-        // Remover classes existentes
-        bulb.classList.remove('ligado', 'desligado');
-      
-        // Adicionar a classe correspondente ao estado atual do toggle
-        if (toggle === 'ligado') {
-          bulb.classList.add('ligado');
-        } else {
-          bulb.classList.add('desligado');
+interruptorCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+        homeLuz.style.transition = 'opacity 1s ease';
+        homeLuz.style.opacity = '0.4';
+        // Salve o estado 'ligado' no localStorage
+        localStorage.setItem('interruptor', 'ligado');
+    } else {
+        homeLuz.style.transition = 'opacity 1s ease';
+        homeLuz.style.opacity = '0';
+        // Salve o estado 'desligado' no localStorage
+        localStorage.setItem('interruptor', 'desligado');
+    }
+});
+
+/*=============== ESCOLHA ACCORDION ===============*/
+const accordionItems = document.querySelectorAll('.escolha__accordion-item')
+
+accordionItems.forEach((item) => {
+    const accordionHeader = item.querySelector('.escolha__accordion-header')
+
+    accordionHeader.addEventListener('click', () => {
+        const openItem = document.querySelector('.accordion-open')
+
+        toggleItem(item)
+
+        if(openItem !== item){
+            toggleItem(openItem)
         }
+    })
+})
 
-      set([DUMMY, HIT], { display: 'block' });
-      set(CORDS[0], { display: 'none' });
-      RESET();
-    } });
-  
-  
-  for (let i = 1; i < CORDS.length; i++) {
-    CORD_TL.add(
-    to(CORDS[0], {
-      morphSVG: CORDS[i],
-      duration: CORD_DURATION,
-      repeat: 1,
-      yoyo: true }));
-  
-  
-  }
-  
-  Draggable.create(PROXY, {
-    trigger: HIT,
-    type: 'x,y',
-    onPress: e => {
-      startX = e.x;
-      startY = e.y;
+const toggleItem = (item) =>{
+    const accordionContent = item.querySelector('.escolha__accordion-content')
+
+    if(item.classList.contains('accordion-open')){
+        accordionContent.removeAttribute('style')
+        item.classList.remove('accordion-open')
+    }else{
+        accordionContent.style.height = accordionContent.scrollHeight + 'px'
+    item.classList.add('accordion-open')
+    }
+}
+
+/*================== SLIDER SOBRE ==================*/
+let swiperDepoimento = new Swiper(".swiper__sobre", {
+    effect: "coverflow",
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
     },
-    onDrag: function () {
-      set(DUMMY_CORD, {
-        attr: {
-          x2: this.x,
-          y2: this.y } });
-  
-  
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
     },
-    onRelease: function (e) {
-      const DISTX = Math.abs(e.x - startX);
-      const DISTY = Math.abs(e.y - startY);
-      const TRAVELLED = Math.sqrt(DISTX * DISTX + DISTY * DISTY);
-      to(DUMMY_CORD, {
-        attr: { x2: ENDX, y2: ENDY },
-        duration: CORD_DURATION,
-        onComplete: () => {
-          if (TRAVELLED > 50) {
-            CORD_TL.restart();
-          } else {
-            RESET();
-          }
-        } });
-  
-    } });
+    pagination: {
+      el: ".swiper-pagination-sobre",
+      clickable: true,
+    }
+  });
+
