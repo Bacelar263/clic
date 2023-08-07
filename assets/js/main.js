@@ -91,7 +91,7 @@ const toggleItem = (item) =>{
 }
 
 /*================== SLIDER SOBRE ==================*/
-let swiperDepoimento = new Swiper(".swiper__sobre", {
+let swiperSobre = new Swiper(".swiper__sobre", {
     effect: "coverflow",
     autoplay: {
         delay: 2500,
@@ -99,6 +99,7 @@ let swiperDepoimento = new Swiper(".swiper__sobre", {
     },
     grabCursor: true,
     centeredSlides: true,
+    loop: true,
     slidesPerView: "auto",
     coverflowEffect: {
       rotate: 50,
@@ -111,5 +112,73 @@ let swiperDepoimento = new Swiper(".swiper__sobre", {
       el: ".swiper-pagination-sobre",
       clickable: true,
     }
+});
+
+/*================== SLIDER PRODUTOS ==================*/
+let swiperProdutos = new Swiper(".produtos__conteudo", {
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    loop: true,
+    grabCursor: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        768: {
+            centeredSlides: false,
+        }
+    }
+})
+
+/*================== SLIDER DEPOIMENTOS ==================*/
+let swiperDepoimento = new Swiper(".swiper__depoimentos", {
+    effect: "cube",
+    loop: true,
+    grabCursor: true,
+    cubeEffect: {
+      shadow: false
+    },
+    pagination: {
+      el: ".swiper-pagination-depoimentos",
+      clickable: true,
+    }
   });
 
+/*=============== MODAL ===============*/
+const modalViews = document.querySelectorAll('.habilidade__modal'),
+modalBtns = document.querySelectorAll('.btn__depoimento'),
+modalCloses = document.querySelectorAll('.habilidade__modal-close')
+
+let modal = function(modalClick) {
+modalViews[modalClick].classList.add('active-modal')
+}
+
+modalBtns.forEach((modalBtn, i) => {
+modalBtn.addEventListener('click', () => {
+  modal(i);
+})
+})
+
+modalCloses.forEach((modalClose) => {
+modalClose.addEventListener('click', () => {
+  modalViews.forEach((modalView) => {
+      modalView.classList.remove('active-modal')
+  })
+})
+})
+
+/*=============== CARACTERES ===============*/
+let textArea = document.querySelector("#depoimento_mensagem"),
+numero_minimo = document.querySelector(".numero_minimo");
+
+textArea.addEventListener("input", () => {
+    let tamanho = textArea.value.length;
+    numero_minimo.innerHTML = tamanho;
+
+    if (tamanho >= 300) {
+        textArea.value = textArea.value.substr(0, 299);
+    } else {
+        textArea.disabled = false;
+    }
+});
