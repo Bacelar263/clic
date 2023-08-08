@@ -211,3 +211,57 @@ const toggleDuvidas = (item) => {
         item.classList.add('duvidas-aberto')
     }
 }
+
+/*=============== MOSTRAR SCROLL UP ===============*/
+const scrollUp = () => {
+    const scrollUp = document.getElementById('scroll-up')
+
+    this.scrollY >= 350 ? scrollUp.classList.add('mostrar-scrollup')
+                        : scrollUp.classList.remove('mostrar-scrollup')
+}
+
+window.addEventListener('scroll', scrollUp)
+
+/*=============== LINK ATIVO ===============*/
+const sections = document.querySelectorAll('section[id]');
+
+function scrollActive() {
+    const scrollY = window.pageYOffset;
+
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 50;
+        const sectionId = current.getAttribute('id');
+        const menuLink = document.querySelector(`.nav__menu a[href="#${sectionId}"]`);
+        
+
+        if (menuLink) {
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                menuLink.classList.add('link-ativo');
+                console.log(menuLink)
+            } else {
+                menuLink.classList.remove('link-ativo');
+            }
+        }
+    });
+}
+
+window.addEventListener('scroll', scrollActive);
+
+/*=============== TEMA ESCURO ===============*/
+const botaoTema = document.getElementById('interruptor');
+const temaDark = 'dark-theme'
+
+const temaSelecionado = localStorage.getItem('interruptor');
+
+const temaAtual = () => document.body.classList.contains(temaDark) ? 'dark' : 'light'
+
+if(temaSelecionado) {
+    document.body.classList[temaSelecionado === 'dark' ? 'add' : 'remove'](temaDark)
+}
+
+botaoTema.addEventListener('click', () => {
+    document.body.classList.toggle(temaDark)
+
+    localStorage.setItem('tema-selecionado', temaAtual())
+})

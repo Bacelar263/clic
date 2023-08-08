@@ -17,10 +17,10 @@
     --terceiro-gradiente: linear-gradient(90deg,
                             #16712e 0%,
                             #4eb540 100%);
-    --cor-titulo: hsl(0, 0%, 12%);
-    --cor-texto: hsl(0, 0%, 50%);
-    --cor-corpo: hsl(0, 0%, 96%);
-    --cor-container: hsl(0, 0%, 100%);
+    --cor-titulo: hsl(0, 0%, 95%);
+    --cor-texto: hsl(0, 0%, 70%);
+    --cor-corpo: hsl(0, 0%, 12%);
+    --cor-container: hsl(0, 0%, 15%);
 
     /* =================== FONTES E TIPOGRAFIA =================== */
     --fonte-principal: 'Poppins', sans-serif;
@@ -58,6 +58,14 @@
         --tamanho-fonte-pequena: .875rem;
         --tamanho-fonte-minuscula: .813rem;
     }
+}
+
+/* =================== VARIÁVEIS TEMA ESCURO =================== */
+body.dark-theme {
+    --cor-titulo: hsl(0, 0%, 12%);
+    --cor-texto: hsl(0, 0%, 50%);
+    --cor-corpo: hsl(0, 0%, 96%);
+    --cor-container: hsl(0, 0%, 100%);
 }
 
 /* =================== BASE =================== */
@@ -252,6 +260,14 @@ img {
 
 .bg-header :is(.nav__logo, .nav__toggle) {
     color: var(--cor-titulo);
+}
+
+/* Link ativo */
+.link-ativo {
+    background: var(--terceiro-gradiente);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 /* =================== HOME =================== */
@@ -651,7 +667,7 @@ img {
     content: "";
     position: absolute;
     inset: 3px;
-    background: #fff;
+    background: var(--cor-container);
     border-radius: .35rem;
   }
 
@@ -711,6 +727,7 @@ img {
 
   .solar__titulo {
     text-align: center !important;
+    color: ;
   }
 
 /* =================== PRODUTOS =================== */
@@ -1118,10 +1135,11 @@ img {
     padding-block: 1.1rem;
     display: inline-block;
     background: var(--primeiro-gradiente);
-    color: #FFF;
+    color: #FFF !important;
     border-radius: .75rem;
     font-weight: var(--grossura-media);
     text-align: center  ;
+    text-decoration: none;
 }
 
 /* =================== DÚVIDAS =================== */
@@ -1184,6 +1202,110 @@ img {
 
 .duvidas__titulo {
     text-align: center !important;
+}
+
+/* =================== FOOTER =================== */
+.footer__container {
+    row-gap: 3rem;
+}
+
+.footer__logo {
+    height: 150px;
+}
+
+.footer__titulo {
+    font-size: var(--tamanho-fonte-h3);
+    margin-bottom: 1.5rem;
+}
+
+.footer__dados {
+    display: grid;
+    row-gap: .75rem;
+}
+
+.footer__informacao {
+    font-size: var(--tamanho-fonte-pequena);
+}
+
+.footer__social {
+    display: inline-flex;
+    column-gap: .75rem;
+}
+
+.footer__social-link {
+    font-size: var(--tamanho-fonte-h2);
+    color: var(--cor-texto);
+    transition: .3s;
+}
+
+.footer__social-link:hover {
+    transform: translateY(-.25rem);
+}
+
+.footer__copy {
+    text-align: center;
+    font-size: var(--tamanho-fonte-pequena);
+    color: var(--cor-titulo);
+    margin: 5rem 0 1rem;
+}
+
+/* =================== SCROLL BAR =================== */
+/* Largura da barra de rolagem */
+body {
+    scrollbar-width: .6rem;
+    scrollbar-color: #cccccc hsl(0, 0%, 75%);
+}
+
+/* Estilizando o polegar da barra de rolagem */
+body::-webkit-scrollbar-thumb {
+    background-color: hsl(0, 0%, 65%);
+    border-radius: 0.5rem;
+}
+
+/* Estilizando a parte de trás da barra de rolagem */
+body::-webkit-scrollbar-track {
+    background-color: hsl(0, 0%, 55%);
+}
+
+::-webkit-scrollbar {
+    width: .6rem;
+    border-radius: .5rem;
+    background-color: hsl(0, 0%, 75%);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: hsl(0, 0%, 65%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(0, 0%, 55%);
+}
+
+/* =================== SCROLL UP =================== */
+.scrollup {
+    position: fixed;
+    right: 1rem;
+    bottom: -50%;
+    background: var(--cor-container);
+    display: inline-flex;
+    padding: 6px;
+    font-size: 1.25rem;
+    color: var(--cor-titulo);
+    border-radius: .25rem;
+    box-shadow: 0 4px 16px hsla(0, 0%, 0%, .1);
+    z-index: var(--z-tooltip);
+    transition: bottom .4s, trasnform .4s;
+}
+
+.scrollup:hover {
+    transform: translateY(-.25rem);
+}
+
+/* Mostrar seta */
+
+.mostrar-scrollup {
+    bottom: 3rem;
 }
 
 /* =================== BREAKPOINTS =================== */
@@ -1342,6 +1464,15 @@ img {
     .duvidas__container {
         align-items: flex-start;
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer__container {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3rem;
+    }
+
+    .footer__logo {
+        width: 280px;
     }
 }
 
@@ -1512,6 +1643,19 @@ img {
 
     .duvidas__descricao {
         padding: 0 3.5rem 2.25rem 2.75rem;
+    }
+
+    .footer__logo {
+        width: 350px;
+        height: 250px;
+    }
+
+    .footer__container {
+        grid-template-columns: 1fr .5fr .5fr .5fr;
+    }
+
+    .footer__copy {
+        margin: 7rem 0 2rem;
     }
 }
 
