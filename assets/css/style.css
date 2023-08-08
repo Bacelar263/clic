@@ -1121,7 +1121,69 @@ img {
     color: #FFF;
     border-radius: .75rem;
     font-weight: var(--grossura-media);
-    text-align: center;
+    text-align: center  ;
+}
+
+/* =================== DÚVIDAS =================== */
+.duvidas {
+    background-color: var(--cor-container);
+}
+
+.duvidas__container {
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+}
+
+.duvidas__grupo {
+    display: grid;
+    row-gap: 1.5rem;
+}
+
+.duvidas__item {
+    background-color: var(--cor-container);
+    border-radius: .25rem;
+    box-shadow: 0 2px 8px hsla(0, 0%, 0%, .1);
+}
+
+.duvidas__item-titulo {
+    font-size: var(--tamanho-fonte-pequena);
+    font-weight: var(--grossura-media);
+}
+
+.duvidas__icone {
+    font-size: 1.25rem;
+    color: var(--cor-titulo);
+}
+
+.duvidas__descricao {
+    font-size: var(--tamanho-fonte-minuscula);
+    padding: 0 1.25rem 1.25rem 2.5rem;
+}
+
+.duvidas__header {
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+    padding: .75rem .5rem;
+    cursor: pointer;
+}
+
+.duvidas__conteudo {
+    overflow: hidden;
+    height: 0;
+}
+
+.duvidas__item,
+.duvidas__header,
+.duvidas__item-titulo,
+.duvidas__icone,
+.duvidas__descricao,
+.duvidas__conteudo {
+    transition: .3s;
+}
+
+.duvidas__titulo {
+    text-align: center !important;
 }
 
 /* =================== BREAKPOINTS =================== */
@@ -1276,6 +1338,11 @@ img {
     .contato__card {
         justify-content: initial;
     }
+
+    .duvidas__container {
+        align-items: flex-start;
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Para dispositivos grandes */
@@ -1425,6 +1492,26 @@ img {
 
     .contato__card-box {
         padding: 28px 1.5rem 1.5rem;
+    }
+
+    .duvidas__container {
+        padding: 1rem 0 4rem;
+    }
+
+    .duvidas__titulo {
+        text-align: initial;
+    }
+
+    .duvidas__grupo {
+        row-gap: 2rem;
+    }
+
+    .duvidas__header {
+        padding: 1rem;
+    }
+
+    .duvidas__descricao {
+        padding: 0 3.5rem 2.25rem 2.75rem;
     }
 }
 

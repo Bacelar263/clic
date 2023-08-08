@@ -182,3 +182,32 @@ textArea.addEventListener("input", () => {
         textArea.disabled = false;
     }
 });
+
+/*=============== DÚVDAS FREQUENTES ===============*/
+const duvidasItens = document.querySelectorAll('.duvidas__item');
+
+duvidasItens.forEach((item) => {
+    const duvidasheader = item.querySelector('.duvidas__header');
+
+    duvidasheader.addEventListener('click', () => {
+        const abrirItem = document.querySelector('.duvidas-aberto')
+
+        toggleDuvidas(item)
+
+        if(abrirItem && abrirItem !== item) {
+            toggleItem(abrirItem)
+        }
+    })
+})
+
+const toggleDuvidas = (item) => {
+    const duvidasConteudo = item.querySelector('.duvidas__conteudo');
+
+    if(item.classList.contains('duvidas-aberto')) {
+        duvidasConteudo.removeAttribute('style')
+        item.classList.remove('duvidas-aberto')
+    } else {
+        duvidasConteudo.style.height = duvidasConteudo.scrollHeight + 'px';
+        item.classList.add('duvidas-aberto')
+    }
+}
